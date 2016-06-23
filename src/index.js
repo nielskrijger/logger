@@ -12,11 +12,12 @@ class Logger {
 
   constructor() {
     this.logger = null;
+    this.cfg = {};
   }
 
   init(config) {
     const transports = [];
-    const cfg = Object.assign({
+    this.cfg = Object.assign({
       console: {
         level: 'none',
       },
@@ -28,21 +29,21 @@ class Logger {
       },
     }, config);
 
-    if (cfg.console.level !== 'none') {
+    if (this.cfg.console.level !== 'none') {
       transports.push(new Transports.Console({
         colorize: true,
         prettyPrint: true,
         timestamp: true,
-        level: cfg.console.level,
+        level: this.cfg.console.level,
       }));
     }
 
-    if (cfg.loggly.level !== 'none') {
+    if (this.cfg.loggly.level !== 'none') {
       transports.push(new Transports.Loggly({
-        level: cfg.loggly.level,
-        inputToken: cfg.loggly.token,
-        subdomain: cfg.loggly.subdomain,
-        tags: [os.hostname()].concat(config.tags).filter(tag => tag !== undefined),
+        level: this.cfg.loggly.level,
+        inputToken: this.cfg.loggly.token,
+        subdomain: this.cfg.loggly.subdomain,
+        tags: [os.hostname()].concat(this.cfg.tags).filter(tag => tag !== undefined),
         json: true,
       }));
     }
