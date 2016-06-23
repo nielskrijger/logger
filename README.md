@@ -1,6 +1,8 @@
 # Logger
 
-**NOTE**: this library is not very customizable nor will it be, it's intent is to provide a standard for my projects.
+A small wrapper around the [Winston loggly](https://github.com/winstonjs/winston-loggly) library.
+
+**NOTE**: this library is not very customizable nor will it be, its intent is to serve as a standard for my projects.
 
 # Install
 
