@@ -1,6 +1,6 @@
 {
   "name": "@nielskrijger/logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Basic logger instance for console and loggly",
   "main": "dist/index.js",
   "author": "Niels Krijger <niels@kryger.nl>",

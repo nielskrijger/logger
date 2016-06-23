@@ -37,8 +37,6 @@ class Logger {
       }));
     }
 
-    console.log([os.hostname()].concat(config.tags))
-
     if (cfg.loggly.level !== 'none') {
       transports.push(new Transports.Loggly({
         level: cfg.loggly.level,
