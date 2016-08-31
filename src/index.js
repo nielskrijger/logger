@@ -18,18 +18,18 @@ class Logger {
 
   init(config) {
     const transports = [];
-    this.cfg = Object.assign({
-      console: {
-        level: 'none',
-        colorize: true,
-      },
-      loggly: {
-        level: 'none',
-        token: null,
-        subdomain: null,
-        tags: [],
-      },
-    }, config);
+
+    this.cfg.console = Object.assign({
+      level: 'none',
+      colorize: true,
+    }, config.console);
+    
+    this.cfg.loggly = Object.assign({
+      level: 'none',
+      token: null,
+      subdomain: null,
+      tags: [],
+    }, config.loggly);
 
     if (this.cfg.console.level !== 'none') {
       transports.push(new Transports.Console({
