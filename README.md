@@ -20,6 +20,7 @@ import log from '@nielskrijger/logger';
 log.init({
   console: {
     level: 'debug',
+    colorize: true,
   },
   loggly: {
     level: 'info',
@@ -38,6 +39,7 @@ log.error('Error', { test: 'Extra properties!' });
 **Options**
 
 - `console.level`: possible values `none`, `debug`, `info`, `warn`, `error`. To disable all logging set to `none`. Default `none`.
+- `console.colorize`: enable/disable colors in console output. Default `true`.
 - `loggly.level`: possible values `none`, `debug`, `info`, `warn`, `error`. To disable all logging set to `none`. Default `none`.
 - `loggly.token`: the Loggly token, required when `loggly.level !== 'none'`.
 - `loggly.subdomain`: the Loggly subdomain, required when `loggly.level !== 'none'`.

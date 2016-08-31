@@ -13,6 +13,7 @@ class Logger {
   constructor() {
     this.logger = null;
     this.cfg = {};
+    this.timers = {};
   }
 
   init(config) {
@@ -20,6 +21,7 @@ class Logger {
     this.cfg = Object.assign({
       console: {
         level: 'none',
+        colorize: true,
       },
       loggly: {
         level: 'none',
@@ -31,7 +33,7 @@ class Logger {
 
     if (this.cfg.console.level !== 'none') {
       transports.push(new Transports.Console({
-        colorize: true,
+        colorize: this.cfg.console.colorize,
         prettyPrint: true,
         timestamp: true,
         level: this.cfg.console.level,
@@ -65,6 +67,19 @@ class Logger {
 
   error() {
     this.logger.error.apply(this, arguments);
+  }
+
+  startTimer(name) {
+    this.timers[name] = Date.now();
+  }
+
+  stopTimer(name, log = 'debug') {
+    if (!this.timers[name]) {
+      throw new Error(`Unknown timer ${name}`);
+    }
+
+    this[log](name, { duration: Date.now() - this.timers[name] });
+    delete this.timers[name];
   }
 }
 
